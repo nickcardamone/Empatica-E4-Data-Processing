@@ -71,7 +71,7 @@ read.empatica.temp <- function(file) {
 }
 
 
-data_dir <- "C:\\Users\\Nick\\Documents\\Biomo\\Glenbeigh Data" #Directory set up: 1 Folder for each participant containing all zipped Empatica E4 files
+data_dir <- "" #Directory set up: 1 Folder for each participant containing all zipped Empatica E4 files
 participant_E4 <-  list.files(data_dir, full.names = TRUE) #Make a list of the folder with all X number of participant folders containing zip files.
 eda <- c() #Electrodermal Activity
 acc <- c() #Accelerometer Data
@@ -122,7 +122,7 @@ extractor <- function(participant_E4) {
 list(eda, bvp, acc, temp)
 }
 
-rawdf <- lapply(participant_E4[9:13], extractor)
+rawdf <- lapply(participant_E4, extractor)
 
 # Filter to only include hours where there is a daylio risk factor.
 clean_bvp <- c() #Need to condense BVP to match sampling
@@ -176,8 +176,6 @@ for (i in 1:length(rawdf)){
   final[[i]] <- base_clean
 }
 
-
-final <- final %>% rbindlist(use.names = T, idcol = "Participant")
 
 
 final <- final %>% mutate(Participant = Participant + 8)
