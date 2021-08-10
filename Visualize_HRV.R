@@ -1,5 +1,4 @@
 #Notes
-#Tutorial for RHRV Usage: https://www.youtube.com/watch?v=PoHx3d067PI
 
 #Load libraries
 #library(RHRV)
